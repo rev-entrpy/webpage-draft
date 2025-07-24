@@ -10,7 +10,7 @@ function Typewriter({ text = "" }) {
       setDisplayed(text.slice(0, i));
       i++;
       if (i > text.length) clearInterval(timer);
-    }, 34);
+    }, 33);
     return () => clearInterval(timer);
   }, [text]);
   return <span className="typewriter">{displayed}</span>;
@@ -34,12 +34,12 @@ function CommandPrompt() {
     <div className="command-prompt" aria-label="Terminal Prompt">
       {history.map((h, i) => (
         <div key={i}>
-          <span style={{ color: "#0074D9", fontWeight: 600 }}>$ </span>
+          <span style={{ color: "#55ffff", fontWeight: 600 }}>$ </span>
           <span>{h.cmd}</span>
           <div className="command-output">{h.out}</div>
         </div>
       ))}
-      <span style={{ color: "#0074D9", fontWeight: 600 }}>$ </span>
+      <span style={{ color: "#55ffff", fontWeight: 600 }}>$ </span>
       <input
         className="command-input"
         value={value}
@@ -57,15 +57,12 @@ function CommandPrompt() {
 export default function TerminalSection() {
   return (
     <main className="terminal-section">
-      <div style={{ marginBottom: "1.5em" }}>
-        <Typewriter text="Welcome to the academic portfolio of Shreyas Shivapuji. Type 'help' for interactive commands or scroll for research highlights." />
-      </div>
       <CollapsibleSection title="Research Statement">
         <p>
-          <b>Summary:</b> My research explores the intersection of computer science and finance, with a focus on cryptography (VDFs, ZKPs), decentralized exchanges, automated market makers, and high-performance computing applications in financial modeling and trading.
+          <b>Summary:</b> My research explores the intricate interplay between advanced computation and financial markets, especially the technical and practical aspects of cryptography (VDFs, ZKPs), decentralized exchanges, and automated market makers. I am investigating how multi-core and GPU architectures can accelerate financial analytics, order routing, and risk management.
         </p>
         <p>
-          I am currently investigating how multi-core and GPU-based systems can transform order execution, options pricing, and risk management in modern financial markets.
+          I’m motivated by tough questions: How can transparent, decentralized markets coexist with efficiency and privacy? What new risks and opportunities does high-performance computing unlock for quant traders and hedge funds?
         </p>
       </CollapsibleSection>
 
@@ -77,7 +74,7 @@ export default function TerminalSection() {
         <ul>
           <li>
             <b>Strategy:</b> Volatility Arbitrage in VIX Futures.
-            <b> Result:</b> Consistent alpha generation in high-volatility regimes.
+            <b> Result:</b> Outperformed benchmarks in high-volatility regimes.
             <a href="#">[backtest]</a>
           </li>
         </ul>
@@ -88,7 +85,7 @@ export default function TerminalSection() {
             <a href="#">[whitepaper]</a>
           </li>
           <li>
-            <b>Strategy:</b> Cross-Asset Statistical Arbitrage between ETFs and their underlying components.
+            <b>Strategy:</b> Cross-Asset Statistical Arbitrage between ETFs and underlying components.
             <a href="#">[backtest]</a>
           </li>
         </ul>
@@ -100,10 +97,13 @@ export default function TerminalSection() {
             <b>pybacktest:</b> High-performance, event-driven backtesting engine (Python/Rust).
           </li>
           <li>
-            <b>cryptofeed-ws:</b> Low-latency WebSocket connector for real-time crypto market data.
+            <b>cryptofeed-ws:</b> Low-latency WebSocket connector for real-time cryptocurrency market data.
           </li>
         </ul>
       </CollapsibleSection>
+      <div style={{ marginBottom: "1.2em" }}>
+        <Typewriter text="Type `help' for command options." />
+      </div>
       <CommandPrompt />
     </main>
   );

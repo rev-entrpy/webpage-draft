@@ -4,7 +4,7 @@ import TerminalSection from "./TerminalSection";
 
 export default function App() {
   return (
-    <div className="academfolio-main">
+    <div className="terminalfolio-main">
       <ProfileCard />
       <TerminalSection />
     </div>

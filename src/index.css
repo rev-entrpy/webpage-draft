@@ -7,9 +7,9 @@
 }
 
 body {
-  background: #fafbfc;
-  color: #222;
-  font-family: 'BigBlueTerminalNF', 'IBM Plex Mono', 'Segoe UI', Arial, sans-serif;
+  background: #000;
+  color: #aaa;
+  font-family: 'BigBlueTerminalNF', 'IBM Plex Mono', monospace;
   margin: 0;
   padding: 0;
   min-height: 100vh;
@@ -22,75 +22,76 @@ body {
   justify-content: center;
 }
 
-.academfolio-main {
+/* Layout: side-by-side on desktop, stacked on mobile */
+.terminalfolio-main {
   display: flex;
   flex-direction: row;
-  max-width: 1100px;
+  max-width: 1200px;
   width: 100vw;
-  background: #fff;
-  box-shadow: 0 6px 32px #e0e8f0;
-  border-radius: 10px;
-  margin: 2.5em auto;
-  overflow: hidden;
-  border: 1px solid #eaeaea;
+  background: #000;
+  box-shadow: 0 0 24px #222;
+  border-radius: 0;
+  margin: 2em auto;
+  padding: 0;
+  overflow: visible;
 }
-
 @media (max-width: 900px) {
-  .academfolio-main { flex-direction: column; }
-  .profile-card { border-right: none; border-bottom: 2px solid #f2f2f2; }
+  .terminalfolio-main { flex-direction: column; }
+  .profile-card { border-right: none; border-bottom: 2px solid #222; }
 }
 
 .profile-card {
-  min-width: 260px;
-  max-width: 340px;
-  background: #f5f8fa;
-  border-right: 2px solid #f2f2f2;
-  padding: 2.5em 1em 2em 1em;
+  min-width: 280px;
+  max-width: 380px;
+  background: #111;
+  border-right: 2px solid #222;
+  padding: 2em 1em 2em 1em;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
   box-sizing: border-box;
+  min-height: 100%;
 }
 
 .profile-photo {
-  width: 120px;
-  height: 120px;
+  width: 140px;
+  height: 140px;
   border-radius: 50%;
-  border: 2px solid #0074D9;
+  border: 3px solid #55ff55;
   margin-bottom: 1em;
-  box-shadow: 0 2px 12px #e0e8f0;
+  box-shadow: 0 0 12px #55ff5555, 0 0 3px #222 inset;
   object-fit: cover;
-  background: #e0e8f0;
+  background: #222;
 }
 
 .profile-name {
-  color: #222;
+  color: #55ff55;
   font-size: 2em;
-  font-weight: 600;
-  margin-bottom: 0.4em;
+  font-weight: bold;
   letter-spacing: 1px;
+  margin-bottom: 0.35em;
   text-align: center;
+  font-family: inherit;
 }
 
 .profile-role {
-  font-size: 1.1em;
-  color: #0074D9;
-  font-weight: 500;
-  margin-bottom: 1.3em;
+  font-size: 1.11em;
+  color: #55ffff;
+  font-weight: 600;
+  margin-bottom: 1.1em;
   text-align: center;
 }
 
 .profile-contact {
-  font-size: 0.98em;
-  color: #444;
+  font-size: 1em;
+  color: #aaa;
   margin-bottom: 1em;
   text-align: center;
 }
 
 .profile-bio {
-  font-size: 1em;
-  color: #444;
+  font-size: 1.04em;
+  color: #eee;
   margin-bottom: 1.3em;
   line-height: 1.6;
   text-align: justify;
@@ -98,87 +99,87 @@ body {
 
 .social-icons {
   display: flex;
-  gap: 0.7em;
-  margin-top: 1em;
+  gap: 0.9em;
+  margin-top: 1.2em;
 }
 .social-icons a {
-  color: #0074D9;
-  font-size: 1.6em;
+  color: #5555ff;
+  font-size: 1.7em;
   transition: color 0.2s;
   border-radius: 50%;
-  background: #e6f2fd;
-  padding: 0.2em 0.3em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid #e0e8f0;
+  background: #111;
+  padding: 0.22em 0.32em;
+  border: 1px solid #222;
 }
 .social-icons a:hover {
-  color: #004080;
-  background: #cce7ff;
+  color: #55ff55;
+  background: #222;
 }
 
 .terminal-section {
   flex: 1;
-  padding: 2.7em 2.2em 2em 2.2em;
-  background: #fff;
+  padding: 2.7em 2em 2em 2.2em;
+  background: #000;
   min-width: 0;
   overflow-x: auto;
   box-sizing: border-box;
 }
 
+/* Classic h3/h4 sections */
 .section-title {
-  color: #0074D9;
-  font-size: 1.17em;
+  color: #55ffff;
+  font-size: 1.18em;
   font-weight: 600;
-  margin: 1.7em 0 0.5em 0;
+  margin: 1.2em 0 0.5em 0;
   cursor: pointer;
   display: inline-block;
   transition: background 0.1s, color 0.1s;
   border-radius: 5px;
-  padding: 0.2em 0.5em;
+  padding: 0.18em 0.5em;
   letter-spacing: 0.5px;
+  font-family: inherit;
 }
-
 .section-title:hover {
-  color: #fff;
-  background: #0074D9;
+  color: #000;
+  background: #55ffff;
 }
 
 .section-year {
-  color: #222;
+  color: #55ff55;
   font-weight: 500;
   margin: 1em 0 0.5em 0;
+  font-family: inherit;
 }
 
 .section-content p,
 .section-content ul,
 .section-content li {
-  color: #222;
-  font-size: 1.02em;
+  color: #aaa;
+  font-size: 1.05em;
+  font-family: inherit;
 }
 
 .section-content b,
 .section-content strong {
-  color: #111;
-  font-weight: 600;
+  color: #fff;
+  font-weight: 700;
+  font-family: inherit;
 }
 
 .section-content a,
 .section-content a:visited {
-  color: #0074D9;
+  color: #5555ff;
   text-decoration: underline;
   font-weight: 500;
 }
 .section-content a:hover {
-  color: #004080;
-  background: #e6f2fd;
+  color: #000;
+  background: #55ffff;
 }
 
 .collapsible {
-  margin-bottom: 2em;
+  margin-bottom: 1.7em;
 }
-
 .collapsible-content {
   overflow: hidden;
   height: 0;
@@ -198,50 +199,48 @@ body {
 
 .typewriter {
   display: inline-block;
-  color: #0074D9;
-  font-weight: 500;
-  font-size: 1.1em;
+  color: #55ff55;
+  font-weight: 600;
+  font-size: 1.14em;
   font-family: inherit;
   white-space: pre;
-  border-right: 2px solid #0074D9;
+  border-right: 2px solid #55ff55;
   animation: blink-cursor 1s steps(1) infinite;
 }
 @keyframes blink-cursor {
-  0%, 100% { border-right-color: #0074D9; }
+  0%, 100% { border-right-color: #55ff55; }
   50% { border-right-color: transparent; }
 }
 
 .command-prompt {
-  margin-top: 2.3em;
+  margin-top: 2em;
   padding: 1em 1.2em;
-  background: #f5f8fa;
-  color: #222;
+  background: #111;
+  color: #eee;
   font-family: 'BigBlueTerminalNF', 'IBM Plex Mono', monospace;
   border-radius: 7px;
   font-size: 1.03em;
-  box-shadow: 0 0 5px #e0e8f0 inset;
+  box-shadow: 0 0 5px #55ff5566 inset;
   min-height: 2.5em;
-  border: 1px solid #eaeaea;
+  border: 1px solid #222;
 }
-
 .command-input {
   background: transparent;
   border: none;
-  color: #0074D9;
+  color: #55ff55;
   font-family: inherit;
   font-size: inherit;
   outline: none;
   width: 74%;
 }
-
 .command-output {
-  color: #0074D9;
+  color: #55ffff;
   margin-left: 1.8em;
-  font-size: 0.98em;
+  font-size: 1.01em;
   font-family: inherit;
 }
 
-::-webkit-scrollbar { width: 10px; background: #e0e8f0; }
-::-webkit-scrollbar-thumb { background: #cce7ff; border-radius: 5px; }
-::-webkit-scrollbar-thumb:hover { background: #0074D9; }
-::selection { background: #0074D9; color: #fff; }
+::-webkit-scrollbar { width: 10px; background: #222; }
+::-webkit-scrollbar-thumb { background: #222; border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: #555; }
+::selection { background: #55ff55; color: #000; }
