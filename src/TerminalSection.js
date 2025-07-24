@@ -2,18 +2,59 @@ import React from "react";
 import CollapsibleSection from "./CollapsibleSection";
 import { getAcademicCommandOutput } from "./AcademicCommands";
 
-function Typewriter({ text = "" }) {
+// Enhanced Typewriter that supports multiple lines, sequentially
+function MultiTypewriter({ lines, delay = 0 }) {
+  const [currentLine, setCurrentLine] = React.useState(0);
   const [displayed, setDisplayed] = React.useState("");
+  const [typing, setTyping] = React.useState(true);
+
   React.useEffect(() => {
+    let lineIdx = currentLine;
+    if (lineIdx >= lines.length) return;
     let i = 0;
-    const timer = setInterval(() => {
-      setDisplayed(text.slice(0, i));
+    setDisplayed("");
+    setTyping(true);
+
+    const typeInterval = setInterval(() => {
+      setDisplayed(lines[lineIdx].slice(0, i));
       i++;
-      if (i > text.length) clearInterval(timer);
+      if (i > lines[lineIdx].length) {
+        clearInterval(typeInterval);
+        setTyping(false);
+        // Proceed to next line after a delay, unless last line
+        if (lineIdx < lines.length - 1) {
+          setTimeout(() => {
+            setCurrentLine(lineIdx + 1);
+            setTyping(true);
+          }, delay);
+        }
+      }
     }, 33);
-    return () => clearInterval(timer);
-  }, [text]);
-  return <span className="typewriter">{displayed}</span>;
+
+    return () => clearInterval(typeInterval);
+  }, [currentLine, lines, delay]);
+
+  return (
+    <div style={{ minHeight: `${lines.length * 1.3}em`, marginBottom: "1.2em" }}>
+      {lines.map((line, idx) => (
+        <div key={idx} style={{ height: "1.2em" }}>
+          {idx < currentLine ? (
+            <span className="typewriter">{line}</span>
+          ) : idx === currentLine ? (
+            <span className="typewriter">
+              {displayed}
+              {/* Blinking cursor only for the last line and when typing is done */}
+              {idx === lines.length - 1 && !typing ? (
+                <span className="typewriter-blink">_</span>
+              ) : typing ? (
+                <span className="typewriter-blink">_</span>
+              ) : null}
+            </span>
+          ) : null}
+        </div>
+      ))}
+    </div>
+  );
 }
 
 function CommandPrompt() {
@@ -39,7 +80,7 @@ function CommandPrompt() {
           <div className="command-output">{h.out}</div>
         </div>
       ))}
-      <span style={{ color: "#55ffff", fontWeight: 600 }}>$ </span>
+      <span style={{ color: "#55ff55", fontWeight: 600 }}>$ </span>
       <input
         className="command-input"
         value={value}
@@ -47,7 +88,7 @@ function CommandPrompt() {
         onKeyDown={handleEnter}
         spellCheck={false}
         autoFocus
-        placeholder="Type 'help' for commands..."
+        placeholder="Type `help' for commands..."
         aria-label="Terminal Input"
       />
     </div>
@@ -57,6 +98,14 @@ function CommandPrompt() {
 export default function TerminalSection() {
   return (
     <main className="terminal-section">
+      <MultiTypewriter
+        lines={[
+          "Algorithmic strategies engineered.",
+          "Cryptographic integrity upheld.",
+          "Computational power harnessed."
+        ]}
+        delay={1200}
+      />
       <CollapsibleSection title="Research Statement">
         <p>
           <b>Summary:</b> My research explores the intricate interplay between advanced computation and financial markets, especially the technical and practical aspects of cryptography (VDFs, ZKPs), decentralized exchanges, and automated market makers. I am investigating how multi-core and GPU architectures can accelerate financial analytics, order routing, and risk management.
@@ -101,9 +150,6 @@ export default function TerminalSection() {
           </li>
         </ul>
       </CollapsibleSection>
-      <div style={{ marginBottom: "1.2em" }}>
-        <Typewriter text="Type `help' for command options." />
-      </div>
       <CommandPrompt />
     </main>
   );

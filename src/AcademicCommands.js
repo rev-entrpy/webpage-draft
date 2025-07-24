@@ -19,6 +19,18 @@ export function getAcademicCommandOutput(cmd) {
     );
   }
 
+  if (cmd === "cv") {
+    // Opens the CV file in public/cv.pdf
+    window.open(process.env.PUBLIC_URL + "/cv.pdf", "_blank", "noopener,noreferrer");
+    return (
+      <div>
+        Opening CV&hellip;
+        <br />
+        If it didn’t open, <a href={process.env.PUBLIC_URL + "/cv.pdf"} target="_blank" rel="noopener noreferrer">click here</a>.
+      </div>
+    );
+  }
+
   if (cmd === "research" || cmd === "publications") {
     return (
       <div>
@@ -57,6 +69,7 @@ export function getAcademicCommandOutput(cmd) {
           <li><code>interests</code> – Current research interests</li>
           <li><code>research</code> or <code>publications</code> – Recent work</li>
           <li><code>contact</code> – Contact details</li>
+          <li><code>cv</code> – Open CV in a new tab</li>
           <li><code>clear</code> – Clear output</li>
           <li><code>help</code> – List commands</li>
         </ul>

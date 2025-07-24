@@ -197,19 +197,16 @@ body {
   padding-bottom: 0;
 }
 
-.typewriter {
+.typewriter-blink {
   display: inline-block;
+  width: 1ch;
+  animation: blink 1s step-end infinite;
   color: #55ff55;
-  font-weight: 600;
-  font-size: 1.14em;
-  font-family: inherit;
-  white-space: pre;
-  border-right: 2px solid #55ff55;
-  animation: blink-cursor 1s steps(1) infinite;
+  font-weight: bold;
 }
-@keyframes blink-cursor {
-  0%, 100% { border-right-color: #55ff55; }
-  50% { border-right-color: transparent; }
+@keyframes blink {
+  from, to { color: transparent; }
+  50% { color: #55ff55; }
 }
 
 .command-prompt {
